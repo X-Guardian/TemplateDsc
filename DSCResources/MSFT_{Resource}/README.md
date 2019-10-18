@@ -1,0 +1,3 @@
+# Description
+
+The {Resource} DSC resource manages ...

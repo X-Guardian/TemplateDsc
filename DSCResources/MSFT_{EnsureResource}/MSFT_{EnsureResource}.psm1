@@ -1,9 +1,9 @@
 <#
     .SYNOPSIS
-        DSC module for the {Module} {Resource} resource
+        DSC module for the {Resource} resource
 
     .DESCRIPTION
-        The {Module}{Resource} DSC resource manages ...
+        The {Resource} DSC resource manages ...
 
     .PARAMETER KeyProperty
         Key - String
@@ -31,4 +31,4 @@ $script:modulesFolderPath = Join-Path -Path $script:resourceModulePath -ChildPat
 $script:localizationModulePath = Join-Path -Path $script:modulesFolderPath -ChildPath 'AdfsDsc.Common'
 Import-Module -Name (Join-Path -Path $script:localizationModulePath -ChildPath 'AdfsDsc.Common.psm1')
 
-$script:localizedData = Get-LocalizedData -ResourceName 'MSFT_AdfsApplicationPermission'
+$script:localizedData = Get-LocalizedData -ResourceName 'MSFT_{Resource}'

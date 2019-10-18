@@ -79,8 +79,6 @@ try
                 }
 
                 Mock -CommandName Assert-Module
-                Mock -CommandName Assert-Command
-                Mock -CommandName "Assert-$($Global:PSModuleName)Service"
             }
 
             Context 'When the Resource is Present' {
@@ -101,14 +99,9 @@ try
                     Assert-MockCalled -CommandName Assert-Module `
                         -ParameterFilter { $ModuleName -eq $Global:PSModuleName } `
                         -Exactly -Times 1
-                    Assert-MockCalled -CommandName Assert-Command `
-                        -ParameterFilter { $Module -eq $Global:PSModuleName -and $Command -eq $ResourceCommand.Get } `
-                        -Exactly -Times 1
-                    Assert-MockCalled -CommandName "Assert-$($Global:PSModuleName)Service" -Exactly -Times 1
                     Assert-MockCalled -CommandName $ResourceCommand.Get `
                         -ParameterFilter { `
-                            $KeyProperty -eq $getTargetResourceParameters.KeyProperty -and `
-                            $RequiredProperty -eq $getTargetResourceParameters.RequiredProperty } `
+                            $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
                         -Exactly -Times 1
                 }
             }
@@ -131,14 +124,9 @@ try
                     Assert-MockCalled -CommandName Assert-Module `
                         -ParameterFilter { $ModuleName -eq $Global:PSModuleName } `
                         -Exactly -Times 1
-                    Assert-MockCalled -CommandName Assert-Command `
-                        -ParameterFilter { $Module -eq $Global:PSModuleName -and $Command -eq $ResourceCommand.Get } `
-                        -Exactly -Times 1
-                    Assert-MockCalled -CommandName "Assert-$($Global:PSModuleName)Service" -Exactly -Times 1
                     Assert-MockCalled -CommandName $ResourceCommand.Get `
                         -ParameterFilter { `
-                            $KeyProperty -eq $getTargetResourceParameters.KeyProperty -and `
-                            $RequiredProperty -eq $getTargetResourceParameters.RequiredProperty } `
+                            $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
                         -Exactly -Times 1
                 }
             }

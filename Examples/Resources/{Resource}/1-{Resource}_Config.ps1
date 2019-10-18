@@ -1,6 +1,6 @@
 <#PSScriptInfo
 .VERSION 1.0.0
-.GUID Get-A-New-GUID
+.GUID (New-GUID).Guid
 .AUTHOR Microsoft Corporation
 .COMPANYNAME Microsoft Corporation
 .COPYRIGHT (c) Microsoft Corporation. All rights reserved.
@@ -22,13 +22,13 @@
         This configuration will ...
 #>
 
-Configuration '{Module}{Resource}_Config'
+Configuration '{Resource}_Config'
 {
     Import-DscResource -ModuleName '{Module}Dsc'
 
     Node localhost
     {
-        {Module}{Resource} 'Name1'
+        {Resource} Name1
         {
             KeyProperty      = 'Key Property Value'
             RequriedProperty = 'Required Property Value'
