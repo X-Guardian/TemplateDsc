@@ -86,6 +86,7 @@ try
                 }
 
                 Mock -CommandName Assert-Module
+                Mock -CommandName "Assert-$($Global:PSModuleName)Service"
             }
 
             Context 'When the Resource is Present' {
@@ -107,8 +108,7 @@ try
                         -ParameterFilter { $ModuleName -eq $Global:PSModuleName } `
                         -Exactly -Times 1
                     Assert-MockCalled -CommandName $ResourceCommand.Get `
-                        -ParameterFilter { `
-                            $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
+                        -ParameterFilter { $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
                         -Exactly -Times 1
                 }
 
@@ -144,8 +144,7 @@ try
                         -ParameterFilter { $ModuleName -eq $Global:PSModuleName } `
                         -Exactly -Times 1
                     Assert-MockCalled -CommandName $ResourceCommand.Get `
-                        -ParameterFilter { `
-                            $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
+                        -ParameterFilter { $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
                         -Exactly -Times 1
                 }
             }
@@ -195,9 +194,7 @@ try
                                         $RequiredProperty -eq $setTargetResourceParametersChangedProperty.RequiredProperty } `
                                     -Exactly -Times 1
                                 Assert-MockCalled -CommandName $ResourceCommand.Set `
-                                    -ParameterFilter { `
-                                        $KeyProperty -eq $setTargetResourceParametersChangedProperty.KeyProperty -and `
-                                        $RequiredProperty -eq $setTargetResourceParametersChangedProperty.RequiredProperty } `
+                                    -ParameterFilter { $KeyProperty -eq $setTargetResourceParametersChangedProperty.KeyProperty } `
                                     -Exactly -Times 1
                                 Assert-MockCalled -CommandName $ResourceCommand.Add -Exactly -Times 0
                                 Assert-MockCalled -CommandName $ResourceCommand.Remove -Exactly -Times 0
