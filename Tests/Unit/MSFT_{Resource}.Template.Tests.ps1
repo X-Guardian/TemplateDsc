@@ -147,7 +147,9 @@ try
         Describe "$Global:DSCResourceName\Test-TargetResource" -Tag 'Test' {
             BeforeAll {
                 $testTargetResourceParameters = @{
-                    KeyProperty = $mockResource.KeyProperty
+                    KeyProperty      = $mockResource.KeyProperty
+                    RequiredProperty = $mockResource.RequiredProperty
+                    WriteProperty    = $mockResource.WriteProperty
                 }
 
                 Mock -CommandName Get-TargetResource -MockWith { $mockGetTargetResourceResult }

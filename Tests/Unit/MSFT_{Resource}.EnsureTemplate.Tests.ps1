@@ -31,6 +31,13 @@ try
             Remove = 'Remove-{Resource}'
         }
 
+        $mockResourceCommandError = @{
+            Get    = 'Error'
+            Set    = 'Error'
+            Add    = 'Error'
+            Remove = 'Error'
+        }
+
         $mockResource = @{
             KeyProperty      = 'Key Property Value'
             RequiredProperty = 'Required Property Value'
@@ -103,6 +110,18 @@ try
                         -ParameterFilter { `
                             $KeyProperty -eq $getTargetResourceParameters.KeyProperty } `
                         -Exactly -Times 1
+                }
+
+                Context "When $($ResourceCommand.Get) throws an exception" {
+                    BeforeAll {
+                        Mock -CommandName $ResourceCommand.Get -MockWith { Throw $mockResourceCommandError.Get }
+                    }
+
+                    It 'Should throw the correct exception' {
+                        { Get-TargetResource @getTargetResourceParameters } | Should -Throw (
+                            $script:localizedData.GettingResourceError -f `
+                                $getTargetResourceParameters.KeyProperty )
+                    }
                 }
             }
 
@@ -183,6 +202,18 @@ try
                                 Assert-MockCalled -CommandName $ResourceCommand.Add -Exactly -Times 0
                                 Assert-MockCalled -CommandName $ResourceCommand.Remove -Exactly -Times 0
                             }
+
+                            Context "When $($ResourceCommand.Set) throws an exception" {
+                                BeforeAll {
+                                    Mock -CommandName $ResourceCommand.Set -MockWith { Throw $mockResourceCommandError.Set }
+                                }
+
+                                It 'Should throw the correct exception' {
+                                    { Set-TargetResource @setTargetResourceParametersChangedProperty } | Should -Throw (
+                                        $script:localizedData.SettingResourceError -f `
+                                            $setTargetResourceParametersChangedProperty.KeyProperty )
+                                }
+                            }
                         }
                     }
                 }
@@ -203,6 +234,18 @@ try
                             -Exactly -Times 1
                         Assert-MockCalled -CommandName $ResourceCommand.Set -Exactly -Times 0
                         Assert-MockCalled -CommandName $ResourceCommand.Add -Exactly -Times 0
+                    }
+
+                    Context "When $($ResourceCommand.Remove) throws an exception" {
+                        BeforeAll {
+                            Mock -CommandName $ResourceCommand.Remove -MockWith { Throw $mockResourceCommandError.Remove }
+                        }
+
+                        It 'Should throw the correct exception' {
+                            { Set-TargetResource @setTargetResourceAbsentParameters } | Should -Throw (
+                                $script:localizedData.RemovingResourceError -f `
+                                    $setTargetResourceAbsentParameters.KeyProperty )
+                        }
                     }
                 }
             }
@@ -230,6 +273,18 @@ try
                             -Exactly -Times 1
                         Assert-MockCalled -CommandName $ResourceCommand.Set -Exactly -Times 0
                         Assert-MockCalled -CommandName $ResourceCommand.Remove -Exactly -Times 0
+                    }
+
+                    Context "When $($ResourceCommand.Add) throws an exception" {
+                        BeforeAll {
+                            Mock -CommandName $ResourceCommand.Add -MockWith { Throw $mockResourceCommandError.Add }
+                        }
+
+                        It 'Should throw the correct exception' {
+                            { Set-TargetResource @setTargetResourcePresentParameters } | Should -Throw (
+                                $script:localizedData.AddingResourceError -f `
+                                    $setTargetResourcePresentParameters.KeyProperty )
+                        }
                     }
                 }
 
@@ -295,7 +350,7 @@ try
                     {
                         Context "When the $property resource property is not in the desired state" {
                             BeforeAll {
-                                $testTargetResourceNotInDesiredStateParameters = $testTargetResourceParameters.Clone()
+                                $testTargetResourceNotInDesiredStateParameters = $testTargetResourcePresentParameters.Clone()
                                 $testTargetResourceNotInDesiredStateParameters.$property = $mockChangedResource.$property
                             }
 
