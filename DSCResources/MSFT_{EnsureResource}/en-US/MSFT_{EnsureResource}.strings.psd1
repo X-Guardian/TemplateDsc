@@ -1,12 +1,23 @@
 # culture="en-US"
 ConvertFrom-StringData @'
-    GettingResourceMessage                   = Getting '{0}'. (ENS0001)
-    SettingResourceMessage                   = Setting '{0}' property '{1}' to '{2}'. (ENS0002)
-    AddingResourceMessage                    = Adding '{0}' to Application Group '{1}'. (ENS0003)
-    RemovingResourceMessage                  = Removing '{0}' from Application Group '{1}'. (ENS0004)
-    ResourceInDesiredStateMessage            = '{0}' in the desired state. (ENS0005)
-    ResourcePropertyNotInDesiredStateMessage = '{0}' Property '{1}' is not in the desired state. Expected: '{2}', Actual: '{3}'. (ENS0006)
-    ResourceExistsButShouldNotMessage        = '{0}' exists but should not. (ENS0007)
-    ResourceDoesNotExistButShouldMessage     = '{0}' does not exist but should. (ENS0008)
-    ResourceDoesNotExistAndShouldNotMessage  = '{0}' does not exist and should not. (ENS0009)
+    GettingResourceMessage                    = Getting '{0}'. (TMP001)
+    TestingResourceMessage                    = Testing '{0}'. (TMP002)
+    SettingResourceMessage                    = Setting '{0}'. (TMP003)
+    SettingResourcePropertyMessage            = Setting '{0}' property '{1}' to '{2}'. (TMP004)
+    AddingResourceMessage                     = Adding '{0}'. (TMP005)
+    RemovingResourceMessage                   = Removing '{0}'. (TMP006)
+    ResourceInDesiredStateMessage             = '{0}' is in the desired state. (TMP007)
+    ResourceNotInDesiredStateMessage          = '{0}' is not in the desired state. (TMP008)
+    ResourceIsPresentButShouldBeAbsentMessage = '{0}' is present but should be absent. (TMP009)
+    ResourceIsAbsentButShouldBePresentMessage = '{0}' is absent but should be present. (TMP010)
+
+    GettingResourceErrorMessage               = Error getting '{0}'. (TMPERR001)
+    SettingResourceErrorMessage               = Error setting '{0}'. (TMPERR002)
+    RemovingResourceErrorMessage              = Error removing '{0}'. (TMPRR003)
+    AddingResourceErrorMessage                = Error adding '{0}'. (TMPRR004)
+
+    TargetResourcePresentDebugMessage         = '{0}' is Present. (TMPDBG001)
+    TargetResourceAbsentDebugMessage          = '{0}' is Absent. (TMPDBG002)
+    TargetResourceShouldBePresentDebugMessage = '{0}' should be Present. (TMPDBG003)
+    TargetResourceShouldBeAbsentDebugMessage  = '{0}' should be Absent. (TMPDBG004)
 '@

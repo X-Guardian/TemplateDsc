@@ -70,7 +70,7 @@ try
         $mockGetTargetResourceAbsentResult = $mockGetTargetResourceResult.Clone()
         $mockGetTargetResourceAbsentResult.Ensure = 'Absent'
 
-        Describe "$Global:DSCResourceName\Get-TargetResource" -Tag 'Get' {
+        Describe 'MSFT_{InstallOnlyResource}\Get-TargetResource' -Tag 'Get' {
             BeforeAll {
                 $getTargetResourceParameters = @{
                     KeyProperty      = $mockResource.KeyProperty
@@ -132,7 +132,7 @@ try
             }
         }
 
-        Describe "$Global:DSCResourceName\Set-TargetResource" -Tag 'Set' {
+        Describe 'MSFT_{InstallOnlyResource}\Set-TargetResource' -Tag 'Set' {
             BeforeAll {
                 $getTargetResourceParameters = @{
                     KeyProperty      = $mockResource.KeyProperty
@@ -184,7 +184,7 @@ try
             }
         }
 
-        Describe "$Global:DSCResourceName\Test-TargetResource" -Tag 'Test' {
+        Describe 'MSFT_{InstallOnlyResource}\Test-TargetResource' -Tag 'Test' {
             BeforeAll {
                 $testTargetResourceParameters = @{
                     KeyProperty      = $mockResource.KeyProperty

@@ -1,9 +1,12 @@
 # culture="en-US"
 ConvertFrom-StringData @'
-    GettingResourceMessage                   = Getting '{0}'. (RES0001)
-    SettingResourceMessage                   = Setting '{0}' property '{1}' to '{2}'. (RES0002)
-    ResourceInDesiredStateMessage            = '{0}' is in the desired state. (RES0003)
-    ResourcePropertyNotInDesiredStateMessage = '{0}' Property '{1}' is not in the desired state, expected '{2}', actual '{3}'. (RES0004)
-    GettingResourceError                     = Error getting '{0}'. (RES0005)
-    SettingResourceError                     = Error setting '{0}'. (RES0006)
+    GettingResourceMessage           = Getting '{0}'. (RES001)
+    TestingResourceMessage           = Testing '{0}'. (RES002)
+    SettingResourceMessage           = Setting '{0}' property '{1}' to '{2}'. (RES003)
+    SettingResourcePropertyMessage   = Setting '{0}' property '{1}' to '{2}'. (RES004)
+    ResourceInDesiredStateMessage    = '{0}' is in the desired state. (RES005)
+    ResourceNotInDesiredStateMessage = '{0}' is not in the desired state. (RES006)
+
+    GettingResourceErrorMessage      = Error getting '{0}'. (RESERR001)
+    SettingResourceErrorMessage      = Error setting '{0}'. (RESERR002)
 '@
